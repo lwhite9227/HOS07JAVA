@@ -69,6 +69,17 @@ class TaskManager<T> {
             System.out.println(task);
         }
     }
+
+    public void showTasksByPriority(TaskPriority priority) {
+        System.out.println("Tasks with priority " + priority + ":");
+        for (int i = 0; i < size; i++) {
+            @SuppressWarnings("unchecked")
+            T task = (T) tasks[i];
+            if (task instanceof Task && ((Task) task).getPriority() == priority) {
+                System.out.println(task);
+            }
+        }
+    }
 }
 
 
@@ -83,8 +94,9 @@ public class App {
         manager.addTask(t1);
         manager.addTask(t2);
         manager.addTask(t3);
-        
-        
+
         manager.showAllTasks();
+        System.out.println();
+        manager.showTasksByPriority(TaskPriority.HIGH);
     }
-}        
+}
